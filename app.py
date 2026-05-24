@@ -197,7 +197,7 @@ def process_image(uploaded_file):
 
 # --- 4. STREAMLIT UI ---
 st.set_page_config(page_title="Integrated Traffic Intel", layout="wide")
-st.title("🚦 Traffic Scene Intelligence")
+st.title("🚗 Car & 🚦 Traffic Scene Intelligence")
 
 uploaded_file = st.file_uploader("Upload Image", type=['jpg', 'jpeg', 'png'])
 
