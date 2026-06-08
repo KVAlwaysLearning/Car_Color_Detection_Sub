@@ -8,16 +8,18 @@ import os
 # --- 1. INITIALIZE ASSETS ---
 @st.cache_resource
 def load_all_assets():
-    files = {
-        "yolo26n.pt": "1ZGTbc_oHmu42n1EE-cEa0TVBtL7zZ-g2",
-        "yolo26s.pt": "1FjrI1avV-uC77iFtk41anBJStyXDLp8p",
-        "yolo26x.pt": "1Kjlokvxc4IAIXP5c3jh57tVKhQmcZrzl",
-        "idd_yolov8.pt": "1OjHEdbX2bPda9UMtVAVxy7axRFsR_oS6",
-        "yolov8x-worldv2.pt": "1uxcdOFg08qqtY7IM-GdqG_DdL2O4-KUN",
-        "yolov8x-oiv7.pt": "1pZNZfN-iRcV6040OIGmQSSrAMT_5KoM6"
+    asset_map = {
+        "yolo26n.pt": "yolo26n",
+        "yolo26s.pt": "yolo26s",
+        "yolo26x.pt": "yolo26x",
+        "idd_yolov8.pt": "idd_yolov8",
+        "yolov8x-worldv2.pt": "yolov8x_worldv2",
+        "yolov8x-oiv7.pt": "yolov8x_oiv7"
     }
-    for filename, drive_id in files.items():
+    for filename, secret_key in asset_map.items():
         if not os.path.exists(filename):
+            # Access the secret securely
+            drive_id = st.secrets["drive_ids"][secret_key]
             url = f'https://drive.google.com/uc?id={drive_id}'
             gdown.download(url, filename, quiet=False)
 
